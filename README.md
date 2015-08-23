@@ -4,12 +4,12 @@ Block your WordPress login to all IP address that have not been white-listed. Wh
 ## Concept
 
 - Block the wp-login.php with a custom form that uses a phrase to allow the use to continue. `phrase-form`
-- The `phrase-form` will require the user_login plus three words + honey pot
+- The `phrase-form` will require the user_login plus four words + honey pot
 - When the `phrase-form` is submitted:
--- honey pot is confirmed empty or wp_die
--- user_login is checked for existence or wp_die
--- phrase is confirmed or wp_die
-- When the `phrase-form` is successfully submitted the user will be sent an email with an custo `IP accepted link`
+- honey pot is confirmed empty or wp_die
+- user_login is checked for existence or wp_die
+- phrase is confirmed or wp_die
+- When the `phrase-form` is successfully submitted the user will be sent an email with an custom `IP accepted link`
 - When the `IP accepted link` is visited the IP will be saved as `safe-ip` for any user then the user is redirected to the regular wp-login.php
 - Once an IP is saved as `safe-ip` the `phrase-form` is no longer needed
 
@@ -23,7 +23,7 @@ Block your WordPress login to all IP address that have not been white-listed. Wh
 
 - finding a way to confirm that the phrase the user has constructed is strong enough
 - will it be too hard for uses to create phrases that are strong enough
-- should there be an option to pre-populat?
+- should there be an option to pre-populated?
 
 ## Nuts and bolts
 
@@ -52,8 +52,8 @@ Phrase form:
 - private
 - title
 - text-editor
--- remove media buttons
--- remove visual display, only allow text mode
+- remove media buttons
+- remove visual display, only allow text mode
 
 ### register_activation_hook
 
@@ -64,7 +64,6 @@ Phrase form:
 - plugin file with init class that includes, register_activation_hook, register_deactivation_hook, add_rewrite_rule
 - class for post type login-phrases and associated actions and filters interactions
 - class for phrase form display and submission handling
--
 
 Change Log
 ====================
@@ -72,3 +71,7 @@ Change Log
 ### 08.23.15 - randy-c-1.0.0
 - initial commit
 - outline of plugin development
+
+### 08.23.15 - randy-c-1.0.1
+- update general text
+- still need to be re-read for spelling and grammar
