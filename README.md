@@ -68,6 +68,9 @@ Phrase form:
 Change Log
 ====================
 
+### 08.25.15 - v-1.0.0 randy-c-1.2
+- update construct with proper set methods
+
 ### 08.25.15 - v-1.0.0 randy-c-1.1
 - small spelling issues
 

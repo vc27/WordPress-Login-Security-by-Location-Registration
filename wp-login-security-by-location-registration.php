@@ -54,8 +54,8 @@ class WPLSLS {
 	 **/
 	function __construct() {
 
-		$plugin_dir_url = plugin_dir_url( __FILE__ );
-		$plugin_dir_path = plugin_dir_path( __FILE__ );
+		$this->set( 'plugin_dir_url', plugin_dir_url( __FILE__ ) );
+		$this->set( 'plugin_dir_path', plugin_dir_path( __FILE__ ) );
 
 	} // end function __construct
 
