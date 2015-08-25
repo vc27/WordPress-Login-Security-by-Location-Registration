@@ -68,10 +68,15 @@ Phrase form:
 Change Log
 ====================
 
-### 08.23.15 - randy-c-1.0.0
-- initial commit
-- outline of plugin development
+### 08.25.15 - v-1.0.0 randy-c-1.0
+- add base plugin file
+- add base plugin class and constants
+- update commit log with plugin version and commit version
 
-### 08.23.15 - randy-c-1.0.1
+### 08.23.15 - v-1.0.0 randy-c-0.1
 - update general text
 - still need to be re-read for spelling and grammar
+
+### 08.23.15 - v-1.0.0 randy-c-0.0
+- initial commit
+- outline of plugin development
