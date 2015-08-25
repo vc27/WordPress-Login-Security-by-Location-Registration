@@ -3,7 +3,7 @@
  * @package wplslr
  * @license GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
- * Note: Please reference WP Coding standards and update any issues you finde
+ * Note: Please reference WP Coding standards and update any issues you find
  * https://codex.wordpress.org/WordPress_Coding_Standards
  **/
 #################################################################################################### */
@@ -13,13 +13,13 @@ if ( ! defined('ABSPATH') ) {
 	wp_die('Hold your horses there pal!');
 }
 
-// Make sure this file is only bing called once.
+// Make sure this file is only being called once.
 if ( defined('WPLSLS_INIT') ) {
 	return;
 }
 
 /**
- * Define plugin settings
+ * WPLSLS initating class
  **/
 class WPLSLS {
 
@@ -46,6 +46,8 @@ class WPLSLS {
 	 * @var string
 	 **/
 	var $plugin_dir_path = false;
+
+
 
 	/**
 	 * construct

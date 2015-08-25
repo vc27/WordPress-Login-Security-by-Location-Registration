@@ -68,6 +68,9 @@ Phrase form:
 Change Log
 ====================
 
+### 08.25.15 - v-1.0.0 randy-c-1.1
+- small spelling issues
+
 ### 08.25.15 - v-1.0.0 randy-c-1.0
 - add base plugin file
 - add base plugin class and constants
