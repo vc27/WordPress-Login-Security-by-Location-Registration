@@ -1,61 +1,73 @@
 <?php
 /**
+ * Plugin Name: WP login security by location registration (WPLSLR)
+ * Plugin URI: https://github.com/vc27/wp-login-security-by-location-registration
+ * Description: Block your WordPress login to all IP address that have not been white-listed. White list IP's by completing custom phrases that meet zxcvbn crack time of centuries.
+ * Version: 1.0.0
+ * Author: Randy Hicks
+ * Author URI: http://vc27.com
+ * License: GPLv2 or later
+ * Text Domain: wplslr
+ *
  * @package wplslr
- * @license GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * Note: Please reference WP Coding standards and update any issues you find
  * https://codex.wordpress.org/WordPress_Coding_Standards
  **/
 #################################################################################################### */
 
+
+
 // Make sure we don't expose any info if called directly
 if ( ! defined('ABSPATH') ) {
 	wp_die('Hold your horses there pal!');
 }
+
+
 
 // Make sure this file is only being called once.
 if ( defined('WPLSLS_INIT') ) {
 	return;
 }
 
+
+
+// Require settings class
+require_once( 'settings-wpslsr.class.php' );
+
+// Require logging class
+require_once( 'log-wpslsr.class.php' );
+
+// Class for handing phrase for display and submission handling
+// require_once( 'phrase_form_display_submission_handling_wplslr.class.php' );
+
+
+
 /**
- * WPLSLS initating class
+ * WPLSLS class
+ * Core administration and functionality.
  **/
 class WPLSLS {
 
 	/**
-	 * Define plugin version
-	 * @var string
+	 * settings
+	 *
+	 * @access public
+	 * @var mix
+	 * @since 1.0.0
 	 **/
-	const WPLSLS_VERSION = '1.0.0';
-
-	/**
-	 * Define plugin minimum version
-	 * @var string
-	 **/
-	const MINIMUM_WP_VERSION = '4.0.0';
-
-	/**
-	 * URL (with trailing slash) for the plugin __FILE__ passed in
-	 * @var string
-	 **/
-	var $plugin_dir_url = false;
-
-	/**
-	 * filesystem directory path (with trailing slash) for the file passed in
-	 * @var string
-	 **/
-	var $plugin_dir_path = false;
+	var $settings = null;
 
 
 
 	/**
 	 * construct
+	 *
+	 * @since 1.0.0
 	 **/
 	function __construct() {
 
-		$this->set( 'plugin_dir_url', plugin_dir_url( __FILE__ ) );
-		$this->set( 'plugin_dir_path', plugin_dir_path( __FILE__ ) );
+		$this->set( 'settings', new Settings_WPLSLR() );
 
 	} // end function __construct
 
@@ -63,10 +75,14 @@ class WPLSLS {
 
 	/**
 	 * init the plugin
+	 *
+	 * @since 1.0.0
 	 **/
 	function init_plugin() {
 
-		// nothing yet
+		// init -> if ! post_type_exists( $post_type ) register custom post type = login-phrases
+		// init -> add_rewrite_rule
+		// init -> accept custom urls & process the associated data
 
 	} // end function init_plugin
 
@@ -75,10 +91,14 @@ class WPLSLS {
 	/**
 	 * The register_activation_hook function registers a
 	 * plugin function to be run when the plugin is activated.
+	 *
+	 * @since 1.0.0
 	 **/
 	function register_activation_hook() {
 
-		// nothing yet
+		// register custom post type = login-phrases
+		// flush rewrite rules
+		// save current users IP as a safe location
 
 	} // end function register_activation_hook
 
@@ -88,12 +108,22 @@ class WPLSLS {
 	 * The function register_deactivation_hook (introduced in
 	 * WordPress 2.0) registers a plugin function to be run
 	 * when the plugin is deactivated.
+	 *
+	 * @since 1.0.0
 	 **/
 	function register_deactivation_hook() {
 
-		// nothing yet
+		// flush rewrite rules
 
 	} // end function register_deactivation_hook
+
+
+
+	####################################################################################################
+	/**
+	 * Set Get
+	 **/
+	####################################################################################################
 
 
 
@@ -101,6 +131,7 @@ class WPLSLS {
 	 * Set a variable with in the class. Use to avoid empty
 	 * variable and ensure that all values are fully set
 	 *
+	 * @since 1.0.0
 	 * @param $key the name of the variable
 	 * @param $val the value of the variable defaults to false
 	 **/
@@ -117,7 +148,38 @@ class WPLSLS {
 
 
 /**
+ * Instantiate WPLSLS
+ * @since 1.0.0
+ **/
+$WPLSLS = new WPLSLS();
+
+
+
+/**
+ * The register_activation_hook function registers a
+ * plugin function to be run when the plugin is activated.
+ *
+ * @since 1.0.0
+ **/
+register_activation_hook( __file__, array( $WPLSLS, 'register_activation_hook' ) );
+
+
+
+/**
+ * The function register_deactivation_hook (introduced in
+ * WordPress 2.0) registers a plugin function to be run
+ * when the plugin is deactivated.
+ *
+ * @since 1.0.0
+ **/
+register_deactivation_hook( __file__, array( $WPLSLS, 'register_deactivation_hook' ) );
+
+
+
+/**
  * Define a plugin constant to ensure that the plugin
  * is only being called once.
+ *
+ * @since 1.0.0
  **/
 define( 'WPLSLS_INIT', true );

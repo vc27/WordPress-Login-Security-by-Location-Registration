@@ -68,6 +68,12 @@ Phrase form:
 Change Log
 ====================
 
+### 08.26.15 - v-1.0.0 randy-c-2.0
+- update file names to wp coding standards
+- add settings class
+- add log class
+- outline plugin activation and initiation
+
 ### 08.25.15 - v-1.0.0 randy-c-1.2
 - update construct with proper set methods
 
