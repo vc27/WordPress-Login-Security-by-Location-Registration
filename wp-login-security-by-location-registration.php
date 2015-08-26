@@ -80,9 +80,23 @@ class WPLSLS {
 	 **/
 	function init_plugin() {
 
-		// init -> if ! post_type_exists( $post_type ) register custom post type = login-phrases
-		// init -> add_rewrite_rule
-		// init -> accept custom urls & process the associated data
+		/*
+		init -> if ! post_type_exists( $post_type ) register custom post type = login-phrases
+			admin init -> if post type login-phrases
+				update post text editor to text only
+				add admin js to check for password from text editor
+		init -> add_rewrite_rule
+		login init -> add login block
+			check IP against safe IP
+			if IP is safe allow default login
+			if IP is not safe display phrase form
+				get random post
+					display form from post content
+		init -> 
+		init -> accept custom urls & process the associated data
+			parse_request -> if have custom url process response
+				get POST data
+		*/
 
 	} // end function init_plugin
 

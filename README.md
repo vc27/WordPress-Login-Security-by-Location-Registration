@@ -22,7 +22,7 @@ Block your WordPress login to all IP address that have not been white-listed. Wh
 ### issues
 
 - finding a way to confirm that the phrase the user has constructed is strong enough
-- will it be too hard for uses to create phrases that are strong enough
+- will it be too hard for uses to create phrases that are strong enough - http://code.tutsplus.com/articles/using-the-included-password-strength-meter-script-in-wordpress--wp-34736
 - should there be an option to pre-populated?
 
 ## Nuts and bolts
@@ -68,11 +68,13 @@ Phrase form:
 Change Log
 ====================
 
+### 08.26.15 - v-1.0.0 randy-c-2.1
+- outline plugin activation and initiation
+
 ### 08.26.15 - v-1.0.0 randy-c-2.0
 - update file names to wp coding standards
 - add settings class
 - add log class
-- outline plugin activation and initiation
 
 ### 08.25.15 - v-1.0.0 randy-c-1.2
 - update construct with proper set methods
