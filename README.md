@@ -68,6 +68,10 @@ Phrase form:
 Change Log
 ====================
 
+### 08.27.15 - v-1.0.0 randy-c-3.0
+- add login-phrases post type
+- activate plugin and squash errors and warnings
+
 ### 08.26.15 - v-1.0.0 randy-c-2.1
 - outline plugin activation and initiation
 

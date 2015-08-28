@@ -38,6 +38,9 @@ require_once( 'settings-wpslsr.class.php' );
 // Require logging class
 require_once( 'log-wpslsr.class.php' );
 
+// Require post type login phrases class
+require_once( 'post-type-login-phrases.class.php' );
+
 // Class for handing phrase for display and submission handling
 // require_once( 'phrase_form_display_submission_handling_wplslr.class.php' );
 
@@ -68,6 +71,7 @@ class WPLSLS {
 	function __construct() {
 
 		$this->set( 'settings', new Settings_WPLSLR() );
+		$this->set( 'login_phrases', new Post_Type_Login_Phrases() );
 
 	} // end function __construct
 
@@ -80,22 +84,33 @@ class WPLSLS {
 	 **/
 	function init_plugin() {
 
+		$this->login_phrases->set( 'query_var', Settings_WPLSLR::$post_type_query_var );
+		$this->login_phrases->set( 'options', $this->settings->post_type_options );
+
+		add_action( 'init', array( $this->login_phrases, 'register_post_type' ) );
+
 		/*
 		init -> if ! post_type_exists( $post_type ) register custom post type = login-phrases
-			admin init -> if post type login-phrases
-				update post text editor to text only
+			admin init -> if post type edit page login-phrases
+				update text editor options to text only
 				add admin js to check for password from text editor
+				http://code.tutsplus.com/articles/using-the-included-password-strength-meter-script-in-wordpress--wp-34736
+		save_post is post type login-phrases
+			add custom field with encoded version of the pass phrase
 		init -> add_rewrite_rule
+		init -> accept custom urls & process the associated data
+			parse_request -> if have custom url process response
+				get POST data find match in database
+				save IP as safe-ip
+				redirect user to the wp-login.php form
 		login init -> add login block
 			check IP against safe IP
 			if IP is safe allow default login
 			if IP is not safe display phrase form
 				get random post
 					display form from post content
-		init -> 
-		init -> accept custom urls & process the associated data
-			parse_request -> if have custom url process response
-				get POST data
+					include honeypot
+		init ->
 		*/
 
 	} // end function init_plugin
@@ -187,6 +202,14 @@ register_activation_hook( __file__, array( $WPLSLS, 'register_activation_hook' )
  * @since 1.0.0
  **/
 register_deactivation_hook( __file__, array( $WPLSLS, 'register_deactivation_hook' ) );
+
+
+
+/**
+ * Initiate plugin
+ * @since 1.0.0
+ **/
+$WPLSLS->init_plugin();
 
 
 
