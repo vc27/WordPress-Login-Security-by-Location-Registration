@@ -71,7 +71,7 @@ class WPLSLS {
 	function __construct() {
 
 		$this->set( 'settings', new Settings_WPLSLR() );
-		$this->set( 'login_phrases', new Post_Type_Login_Phrases() );
+		$this->set( 'post_type_login_phrases', new Post_Type_Login_Phrases() );
 
 	} // end function __construct
 
@@ -84,10 +84,7 @@ class WPLSLS {
 	 **/
 	function init_plugin() {
 
-		$this->login_phrases->set( 'query_var', Settings_WPLSLR::$post_type_query_var );
-		$this->login_phrases->set( 'options', $this->settings->post_type_options );
-
-		add_action( 'init', array( $this->login_phrases, 'register_post_type' ) );
+		add_action( 'init', array( $this->post_type_login_phrases, 'register_post_type' ) );
 
 		/*
 		init -> if ! post_type_exists( $post_type ) register custom post type = login-phrases

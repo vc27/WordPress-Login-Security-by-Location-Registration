@@ -68,6 +68,9 @@ Phrase form:
 Change Log
 ====================
 
+### 08.28.15 - v-1.0.0 randy-c-4.0
+- refactor post type options and the way they are added, simplify not over complicate
+
 ### 08.27.15 - v-1.0.0 randy-c-3.0
 - add login-phrases post type
 - activate plugin and squash errors and warnings

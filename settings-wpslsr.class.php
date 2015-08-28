@@ -62,15 +62,6 @@ class Settings_WPLSLR {
 
 
 	/**
-	 * options for post type login phrases
-	 * @var array
-	 * @since 1.0.0
-	 **/
-	var $post_type_options = array();
-
-
-
-	/**
 	 * post type name
 	 * @var string
 	 * @since 1.0.0
@@ -97,35 +88,6 @@ class Settings_WPLSLR {
 
 		$this->set( 'plugin_dir_url', plugin_dir_url( __FILE__ ) );
 		$this->set( 'plugin_dir_path', plugin_dir_path( __FILE__ ) );
-
-		$this->set( 'post_type_options', array(
-			'labels' => array(
-				'name' => __( self::$post_type_name, self::TEXT_DOMAIN ),
-				'singular_name' => __( self::$post_type_name, self::TEXT_DOMAIN ),
-				'add_new' => __( 'Add New', self::TEXT_DOMAIN ),
-				'add_new_item' => __( 'Add New', self::TEXT_DOMAIN ),
-				'edit_item' => __( "Edit " . self::$post_type_name, self::TEXT_DOMAIN ),
-				'new_item' => __( "New " . self::$post_type_name, self::TEXT_DOMAIN ),
-				'view_item' => __( "View " . self::$post_type_name, self::TEXT_DOMAIN ),
-				'search_items' => __( "Search " . self::$post_type_name, self::TEXT_DOMAIN ),
-				'not_found' => __( "No " . self::$post_type_name . " found", self::TEXT_DOMAIN ),
-				'not_found_in_trash' => __( "No " . self::$post_type_name . " found in Trash", self::TEXT_DOMAIN ),
-				'parent_item_colon' => '',
-				'menu_name' => __( self::$post_type_name, self::TEXT_DOMAIN )
-			),
-			'public' => false,
-			'show_ui' => true,
-			'show_in_menu' => 'users.php',
-			'capability_type' => 'post', // requires 'page' to call in post_parent
-			'supports' => array(
-				'title',
-				'editor'
-			),
-			'query_var' => self::$post_type_query_var, // This goes to the WP_Query schema
-			'can_export' => true,
-			'_builtin' => false,
-
-		) );
 
 	} // end function __construct
 
