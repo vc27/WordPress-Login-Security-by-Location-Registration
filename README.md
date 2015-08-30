@@ -1,5 +1,61 @@
-# WordPress-Login-Security-by-Location-Registration
-Block your WordPress login to all IP address that have not been white-listed. White list IP's by completing custom phrases that meet zxcvbn crack time of centuries.
+Block your WordPress login to all IP addresses that have not been white-listed. White list IP's by completing custom phrases that meet zxcvbn crack time of centuries.
+
+Dev notes
+====================
+
+- use secondary classes to host grouped functionality
+- use primary plugin class to add_action and add_filters from secondary classes
+- use settings class sparingly, idea is that if a value is use across classes it should reside in the settings class. If the value required initialization it probably should not be in the settings class.
+
+Current Tasks
+====================
+
+- post type - add save_post method
+- post type - remove bloat from text editor should be only the text version
+- post type - add pass phrase check based on wp-strong password checker
+
+Change Log
+====================
+
+### 08.30.15 - v-1.0.0 randy-c-5.0
+- update readme file with structured outline to allow for multiple devs
+
+### 08.28.15 - v-1.0.0 randy-c-4.0
+- refactor post type options and the way they are added, simplify not over complicate
+
+### 08.27.15 - v-1.0.0 randy-c-3.0
+- add login-phrases post type
+- activate plugin and squash errors and warnings
+
+### 08.26.15 - v-1.0.0 randy-c-2.1
+- outline plugin activation and initiation
+
+### 08.26.15 - v-1.0.0 randy-c-2.0
+- update file names to wp coding standards
+- add settings class
+- add log class
+
+### 08.25.15 - v-1.0.0 randy-c-1.2
+- update construct with proper set methods
+
+### 08.25.15 - v-1.0.0 randy-c-1.1
+- small spelling issues
+
+### 08.25.15 - v-1.0.0 randy-c-1.0
+- add base plugin file
+- add base plugin class and constants
+- update commit log with plugin version and commit version
+
+### 08.23.15 - v-1.0.0 randy-c-0.1
+- update general text
+- still need to be re-read for spelling and grammar
+
+### 08.23.15 - v-1.0.0 randy-c-0.0
+- initial commit
+- outline of plugin development
+
+Conceptual Notes
+====================
 
 ## Concept
 
@@ -19,7 +75,7 @@ Block your WordPress login to all IP address that have not been white-listed. Wh
 - avoid allowing bots to attack the login form by forcing IP recognition
 - the phrase-form has to be able to stop bots from successfully submitting the form and triggering an email send to an existing user
 
-### issues
+### Potential Issues
 
 - finding a way to confirm that the phrase the user has constructed is strong enough
 - will it be too hard for uses to create phrases that are strong enough - http://code.tutsplus.com/articles/using-the-included-password-strength-meter-script-in-wordpress--wp-34736
@@ -64,40 +120,3 @@ Phrase form:
 - plugin file with init class that includes, register_activation_hook, register_deactivation_hook, add_rewrite_rule
 - class for post type login-phrases and associated actions and filters interactions
 - class for phrase form display and submission handling
-
-Change Log
-====================
-
-### 08.28.15 - v-1.0.0 randy-c-4.0
-- refactor post type options and the way they are added, simplify not over complicate
-
-### 08.27.15 - v-1.0.0 randy-c-3.0
-- add login-phrases post type
-- activate plugin and squash errors and warnings
-
-### 08.26.15 - v-1.0.0 randy-c-2.1
-- outline plugin activation and initiation
-
-### 08.26.15 - v-1.0.0 randy-c-2.0
-- update file names to wp coding standards
-- add settings class
-- add log class
-
-### 08.25.15 - v-1.0.0 randy-c-1.2
-- update construct with proper set methods
-
-### 08.25.15 - v-1.0.0 randy-c-1.1
-- small spelling issues
-
-### 08.25.15 - v-1.0.0 randy-c-1.0
-- add base plugin file
-- add base plugin class and constants
-- update commit log with plugin version and commit version
-
-### 08.23.15 - v-1.0.0 randy-c-0.1
-- update general text
-- still need to be re-read for spelling and grammar
-
-### 08.23.15 - v-1.0.0 randy-c-0.0
-- initial commit
-- outline of plugin development
