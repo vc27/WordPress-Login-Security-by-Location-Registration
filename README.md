@@ -14,14 +14,16 @@ Current Tasks
 ====================
 
 - post type - add save_post method
-- post type - remove bloat from text editor should be only the text version
-- post type - add pass phrase check based on wp-strong password checker
+- post type - update password check js to be on keyup and parse the content string looking for *flaged-words*
 
 #### references
 - post type edit page loading information can be found `/wp-admin/edit-form-advanced.php`
 
 Change Log
 ====================
+
+### 08.30.15 - v-1.0.0 randy-c-5.1
+- add basic version of password check using on click and test string
 
 ### 08.30.15 - v-1.0.0 randy-c-5.0
 - update readme file with structured outline to allow for multiple devs

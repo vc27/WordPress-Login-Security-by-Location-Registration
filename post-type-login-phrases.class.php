@@ -130,13 +130,19 @@ class Post_Type_Login_Phrases {
 			return $settings;
 		}
 
-		wp_register_script( 'passphrase-admin', plugin_dir_url( __FILE__ ) . 'js/admin-js.js', array('jquery'), null );
+		wp_register_script( 'passphrase-admin', plugin_dir_url( __FILE__ ) . 'js/admin-js.js', array('jquery','password-strength-meter'), null );
 
 		wp_localize_script(
 			'passphrase-admin',
 			Settings_WPLSLR::$localize_obj_name,
 			array(
-				'stuff' => 'put cool stuff here :)'
+				'active' => 1,
+				'empty' => __( 'Strength indicator', $this->text_domain ),
+				'short' => __( 'Very weak', $this->text_domain ),
+				'bad' => __( 'Weak', $this->text_domain ),
+				'good' => __( 'Medium', $this->text_domain ),
+				'strong' => __( 'Strong', $this->text_domain ),
+				'mismatch' => __( 'Mismatch', $this->text_domain )
 			)
 		);
 
@@ -206,7 +212,8 @@ class Post_Type_Login_Phrases {
 
 		?>
 		<hr />
-		<p>Add strength meeter here</p>
+		<p><button id="wplslr-check-password-strength" class="button">Check Strength</button> - currently using test string "Cindy jump brown trains"</p>
+		<p><span id="wplslr-password-strength"></span></p>
 		<?php
 
 	} // end function add_passphrase_action_buttons
