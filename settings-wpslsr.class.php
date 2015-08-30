@@ -80,6 +80,34 @@ class Settings_WPLSLR {
 
 
 	/**
+	 * description on how to use the text editor when making
+	 * a passphrase
+	 * @var string
+	 * @since 1.0.0
+	 **/
+	static $wp_editor_description = 'Description text goes here.';
+
+
+
+	/**
+	 * object name of the localized script
+	 * @var string
+	 * @since 1.0.0
+	 **/
+	static $localize_obj_name = 'passPhraseObj';
+
+
+
+	/**
+	 * action name of the localized script
+	 * @var string
+	 * @since 1.0.0
+	 **/
+	static $ajax_action_str = 'pass-phrase';
+
+
+
+	/**
 	 * construct
 	 *
 	 * @since 1.0.0

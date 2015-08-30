@@ -119,4 +119,122 @@ class Post_Type_Login_Phrases {
 
 
 
+	/**
+	 * Add scripts to wp-admin
+	 * @since 1.0.0
+	 **/
+	function admin_enqueue_scripts() {
+		global $post_type;
+
+		if ( 'login-phrases' != $post_type ) {
+			return $settings;
+		}
+
+		wp_register_script( 'passphrase-admin', plugin_dir_url( __FILE__ ) . 'js/admin-js.js', array('jquery'), null );
+
+		wp_localize_script(
+			'passphrase-admin',
+			Settings_WPLSLR::$localize_obj_name,
+			array(
+				'stuff' => 'put cool stuff here :)'
+			)
+		);
+
+		wp_enqueue_script( 'passphrase-admin' );
+
+	} // end function admin_enqueue_scripts
+
+
+
+	/**
+	 * Filter the post wp_editor settings to output a simple text editor
+	 * @since 1.0.0
+	 * @param $settings array
+	 * @param $editor_id string
+	 **/
+	function filter_wp_editor_settings( $settings, $editor_id ) {
+		global $post_type;
+
+		if ( 'login-phrases' != $post_type ) {
+			return $settings;
+		}
+
+		$settings['media_buttons'] = false;
+		$settings['textarea_rows'] = 6;
+		$settings['tinymce'] = false;
+
+		// do cool stuff
+		// remove media buttons
+		// remove visual editor
+		// all that should be left is a plain text editor
+
+		return $settings;
+
+	} // end function filter_wp_editor_settings
+
+
+
+	/**
+	 * Add desription just above the wp_editor
+	 * @since 1.0.0
+	 * @param $post object
+	 **/
+	function wp_editor_description( $post ) {
+		global $post_type;
+
+		if ( 'login-phrases' != $post_type ) {
+			return $settings;
+		}
+
+		echo wpautop(Settings_WPLSLR::$wp_editor_description);
+
+	} // end function wp_editor_description
+
+
+
+	/**
+	 * Add passphras action buttons for checking passphrase strengh and validity.
+	 * @since 1.0.0
+	 * @param $post object
+	 **/
+	function add_passphrase_action_buttons( $post ) {
+		global $post_type;
+
+		if ( 'login-phrases' != $post_type ) {
+			return $settings;
+		}
+
+		?>
+		<hr />
+		<p>Add strength meeter here</p>
+		<?php
+
+	} // end function add_passphrase_action_buttons
+
+
+
+	/**
+	 * Save the post meta for the passphrase.
+	 * Save the passphrase with the same encryption as a user password.
+	 * @since 1.0.0
+	 * @param $post_id
+	 **/
+	function save_post( $post_id, $post ) {
+
+		// do not continue if any of the following exist
+		if (
+			$post->post_type != $this->query_var
+			OR ( defined('DOING_AUTOSAVE') AND DOING_AUTOSAVE )
+			OR ( defined('DOING_AJAX') AND DOING_AJAX )
+			OR ! current_user_can( 'edit_post', $post_id )
+		) {
+			return $post_id;
+		}
+
+		// get passphrase and save encrypted
+
+	} // end function save_post
+
+
+
 } // end class Post_Type_Login_Phrases

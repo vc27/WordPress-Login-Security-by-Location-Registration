@@ -86,6 +86,8 @@ class WPLSLS {
 
 		add_action( 'init', array( $this->post_type_login_phrases, 'register_post_type' ) );
 
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
+
 		/*
 		init -> if ! post_type_exists( $post_type ) register custom post type = login-phrases
 			admin init -> if post type edit page login-phrases
@@ -111,6 +113,28 @@ class WPLSLS {
 		*/
 
 	} // end function init_plugin
+
+
+
+	/**
+	 * Triggered before any other hook when a user accesses the admin area.
+	 * @since 1.0.0
+	 **/
+	function admin_init() {
+
+		// filter wp_editor to trim it down to the most basic editor possible
+		add_filter( 'wp_editor_settings', array( $this->post_type_login_phrases, 'filter_wp_editor_settings' ), 10, 2 );
+
+		// add a short description below the title for uses
+		add_filter( 'edit_form_after_title', array( $this->post_type_login_phrases, 'wp_editor_description' ) );
+
+		// add action buttons for uses to test their passphrase strength
+		add_filter( 'edit_form_after_title', array( $this->post_type_login_phrases, 'add_passphrase_action_buttons' ) );
+
+		// admin scripts
+		add_action( 'admin_enqueue_scripts', array( $this->post_type_login_phrases, 'admin_enqueue_scripts' ) );
+
+	} // end function admin_init
 
 
 
