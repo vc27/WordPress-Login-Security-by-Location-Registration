@@ -41,8 +41,8 @@ require_once( 'log-wpslsr.class.php' );
 // Require post type login phrases class
 require_once( 'post-type-login-phrases.class.php' );
 
-// Class for handing phrase for display and submission handling
-// require_once( 'phrase_form_display_submission_handling_wplslr.class.php' );
+// Class for handing login form display and submission handling
+require_once( 'login-form-wpslsr.class.php' );
 
 
 
@@ -72,6 +72,7 @@ class WPLSLS {
 
 		$this->set( 'settings', new Settings_WPLSLR() );
 		$this->set( 'post_type_login_phrases', new Post_Type_Login_Phrases() );
+		$this->set( 'login_form', new Login_Form_WPSLSR() );
 
 	} // end function __construct
 
@@ -87,6 +88,8 @@ class WPLSLS {
 		add_action( 'init', array( $this->post_type_login_phrases, 'register_post_type' ) );
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+
+		// add_action( 'login_init', array( $this->login_form, 'login_init' ) );
 
 		/*
 		init -> if ! post_type_exists( $post_type ) register custom post type = login-phrases

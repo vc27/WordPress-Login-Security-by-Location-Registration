@@ -22,6 +22,9 @@ Current Tasks
 Change Log
 ====================
 
+### 09.13.15 - v-1.0.0 randy-c-6.0
+- finish js pass phrase check for wp-admin
+
 ### 08.30.15 - v-1.0.0 randy-c-5.1
 - add basic version of password check using on click and test string
 
@@ -102,12 +105,7 @@ Conceptual Notes
 
 ##### Phrase example
 ```
-Actual phrase: *Cindy* had a dog that loved to *jump* named Rover. Rover was *brown* and hated *trains*
-
-Phrase form:
-<form>
-    <input type="text" name="phrase[]" required /> had a dog that loved to <input type="text" name="phrase[]" required /> named Rover. Rover was <input type="text" name="phrase[]" required /> and hated <input type="text" name="phrase[]" required />.
-</form>
+Cindy jumps brown trains
 ```
 
 ### custom post type - `login-phrases`

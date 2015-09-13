@@ -85,7 +85,7 @@ class Settings_WPLSLR {
 	 * @var string
 	 * @since 1.0.0
 	 **/
-	static $wp_editor_description = 'Description text goes here.';
+	static $wp_editor_description = 'Type in a memorble phrase that will help block you\'re WordPress login.';
 
 
 
@@ -104,6 +104,21 @@ class Settings_WPLSLR {
 	 * @since 1.0.0
 	 **/
 	static $ajax_action_str = 'pass-phrase';
+
+
+
+	/**
+	 * random values for generating phrases
+	 * @var string
+	 * @since 1.0.0
+	 **/
+	static $random_phrase_strings = array(
+		'name' => array( 'Cindy', 'Jimmy', 'Benny', 'June', 'Sally' ),
+		'verb' => array( 'jumps', 'bikes', 'follows', 'bounces', 'flops' ),
+		'color' => array( 'brown', 'black', 'yellow', 'green', 'puple' ),
+		'object' => array( 'trains', 'plains', 'plants', 'bottles', 'sunglasses' ),
+
+	);
 
 
 

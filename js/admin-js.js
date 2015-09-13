@@ -1,13 +1,12 @@
 /**
- * adminLoginPhrases
- *
- * @version 1.0
- * @updated 00.00.00
+ * JS class for admin login passphrase strength check
+ * @uses wp.passwordStrength
+ * @since 1.0.0
  **/
 var adminLoginPhrases = {
 
-
-	l : 0
+	// local object
+	l : null
 
 
 
@@ -23,18 +22,50 @@ var adminLoginPhrases = {
 			return;
 		}
 
+		// Add local to class
 		adminLoginPhrases.l = passPhraseObj;
-
+		// disable publish button
 		jQuery('#publish').attr('disabled','disabled');
 
+		this.setRandomPhrase();
 		this.onClickCheck();
+		this.onKeyUp();
+
+		setTimeout( adminLoginPhrases.doCheckPassPhrase, 1000 );
 
 	} // end init : function
 
 
 
+	,setRandomPhrase : function() {
+
+		jQuery( '#wplslr-set-random-phrase' ).click( function( event ) {
+			event.preventDefault();
+
+			var strings = adminLoginPhrases.l.random_phrase_strings
+			var phrase = [];
+			var rand = [];
+
+			rand.push(Math.floor( Math.random() * 4 ));
+			rand.push(Math.floor( Math.random() * 4 ));
+			rand.push(Math.floor( Math.random() * 4 ));
+			rand.push(Math.floor( Math.random() * 4 ));
+
+			phrase.push(strings.name[rand[0]]);
+			phrase.push(strings.verb[rand[1]]);
+			phrase.push(strings.color[rand[2]]);
+			phrase.push(strings.object[rand[3]]);
+
+			jQuery('textarea[name=content]').val(phrase.join(' '));
+			adminLoginPhrases.doCheckPassPhrase();
+		} );
+
+	}
+
+
+
 	,getCurrentPhrase : function() {
-		return 'Cindy jump brown trains';
+		return jQuery('textarea[name=content]').val();
 	}
 
 
@@ -43,13 +74,7 @@ var adminLoginPhrases = {
 
 		jQuery( '#wplslr-check-password-strength' ).click( function( event ) {
 			event.preventDefault();
-			var currentPhrase = adminLoginPhrases.getCurrentPhrase();
-			adminLoginPhrases.checkPassPhrase(
-				currentPhrase, // First password field
-				jQuery('#wplslr-password-strength'), // Strength meter
-				jQuery('#publish'), // Submit button
-				[] // Blacklisted words
-			);
+			adminLoginPhrases.doCheckPassPhrase();
 		} );
 
 	}
@@ -60,14 +85,21 @@ var adminLoginPhrases = {
 
 		jQuery( 'body' ).on( 'keyup', 'textarea[name=content]',
 			function( event ) {
-				var currentPhrase = adminLoginPhrases.getCurrentPhrase();
-				adminLoginPhrases.checkPassPhrase(
-					currentPhrase, // First password field
-					jQuery('#wplslr-password-strength'), // Strength meter
-					jQuery('#publish'), // Submit button
-					[] // Blacklisted words
-				);
+				adminLoginPhrases.doCheckPassPhrase();
 			}
+		);
+
+	}
+
+
+
+	,doCheckPassPhrase : function() {
+
+		adminLoginPhrases.checkPassPhrase(
+			adminLoginPhrases.getCurrentPhrase(), // First password field
+			jQuery('#wplslr-password-strength'), // Strength meter
+			jQuery('#publish'), // Submit button
+			[] // Blacklisted words
 		);
 
 	}

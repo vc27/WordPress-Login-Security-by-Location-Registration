@@ -142,7 +142,8 @@ class Post_Type_Login_Phrases {
 				'bad' => __( 'Weak', $this->text_domain ),
 				'good' => __( 'Medium', $this->text_domain ),
 				'strong' => __( 'Strong', $this->text_domain ),
-				'mismatch' => __( 'Mismatch', $this->text_domain )
+				'mismatch' => __( 'Mismatch', $this->text_domain ),
+				'random_phrase_strings' => Settings_WPLSLR::$random_phrase_strings
 			)
 		);
 
@@ -212,35 +213,31 @@ class Post_Type_Login_Phrases {
 
 		?>
 		<hr />
-		<p><button id="wplslr-check-password-strength" class="button">Check Strength</button> - currently using test string "Cindy jump brown trains"</p>
-		<p><span id="wplslr-password-strength"></span></p>
+		<style type="text/css">
+			.default {
+				background:#fff;
+				line-height:24px;
+				padding:3px 10px;
+				border-left:solid 4px red;
+				font-weight:800;
+				width:70px;
+				display:inline-block;
+			}
+			.bad { border-left-color:red; }
+			.good { border-left-color:orange; }
+			.strong { border-left-color:green; }
+			.short { border-left-color:red; }
+			#ed_toolbar {
+				display:none;
+			}
+			#content {
+				margin-top:0 !important;
+			}
+		</style>
+		<p><span id="wplslr-password-strength" class="default">Checking...</span> <button id="wplslr-set-random-phrase" class="button">Set random phrase</button></p>
 		<?php
 
 	} // end function add_passphrase_action_buttons
-
-
-
-	/**
-	 * Save the post meta for the passphrase.
-	 * Save the passphrase with the same encryption as a user password.
-	 * @since 1.0.0
-	 * @param $post_id
-	 **/
-	function save_post( $post_id, $post ) {
-
-		// do not continue if any of the following exist
-		if (
-			$post->post_type != $this->query_var
-			OR ( defined('DOING_AUTOSAVE') AND DOING_AUTOSAVE )
-			OR ( defined('DOING_AJAX') AND DOING_AJAX )
-			OR ! current_user_can( 'edit_post', $post_id )
-		) {
-			return $post_id;
-		}
-
-		// get passphrase and save encrypted
-
-	} // end function save_post
 
 
 
