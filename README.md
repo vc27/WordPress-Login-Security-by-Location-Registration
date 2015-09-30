@@ -19,8 +19,17 @@ Current Tasks
 #### references
 - post type edit page loading information can be found `/wp-admin/edit-form-advanced.php`
 
+#### Suggestions
+- use a math for to bypass the pass-phrase
+- may need to use original pass-phrase idea of: "word input word input" if there are going to be random pass-phrases
+- how will users know what the pass-phrase(s) is/are?
+
 Change Log
 ====================
+
+### 09.30.15 - v-1.0.0 randy-c-7.0
+- add suggestions on how to handle pass-phrase form by pass
+- add suggestions
 
 ### 09.13.15 - v-1.0.0 randy-c-6.0
 - finish js pass phrase check for wp-admin
